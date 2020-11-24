@@ -1,8 +1,18 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  flex-wrap: center;
 }
 
 a {
   color: #00B7FF;
 }
+
+.brand-logo {
+  margin-left: 15px;
+}
+
+.card .card-content .card-title {
+  margin-bottom: 10px;
+}
+

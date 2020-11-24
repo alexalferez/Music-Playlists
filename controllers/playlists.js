@@ -9,10 +9,10 @@ function index(req, res, next){
 
   let sortKey = req.query.sort || 'name';
   Playlist.find(modelQuery)
-  .sort(sortKey).exec(function(err, student) {
+  .sort(sortKey).exec(function(err, user) {
       if (err) return next(err);
       res.render('playlists/index', {
-          users,
+          user,
           user: req.user,
           name: req.query.name,
           sortKey

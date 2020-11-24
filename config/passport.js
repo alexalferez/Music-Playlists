@@ -15,7 +15,7 @@ passport.use(new GoogleStrategy({
         if (err) return cb(err);
         if (user) {
             if (!user.avatar){
-                user.avatar = profilr.photos[0].value;
+                user.avatar = profile.photos[0].value;
                 user.save(function(err) {
                     return cb(null, user);
                 });
@@ -45,7 +45,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
 
   // Find your User, using your model, and then call done(err, whateverYourUserIsCalled)
-    Playlist.findById(id, function(id, one){
+    Playlist.findById(id, function(err, user){
         done(err, user);
     });
 });
