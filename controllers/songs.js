@@ -10,7 +10,7 @@ module.exports = {
 
 function addToSongList(req, res) {
     Playlist.findById(req.params.id, function(err, playlist) {
-        playlist.songslist.push(req.body.perfomerId);
+        playlist.songslist.push(req.body.songId);
         playlist.save(function(err) {
             res.redirect(`/playlists/${playlist._id}`);
         });

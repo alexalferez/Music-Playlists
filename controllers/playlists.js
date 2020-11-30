@@ -1,4 +1,5 @@
 const Playlist = require('../models/playlist');
+const Song = require('../models/song');
 
 module.exports = {
     index,
@@ -8,9 +9,18 @@ module.exports = {
 }
 
 function show(req, res) {
-    Playlist.findById((req.params.id), function(err, playlist) {
-        res.render('playlists/show', { title: 'Playlist Info', playlist});
-    })
+    Playlist.findById(req.params.id)
+    .populate('songslist').exec(function(err, playlist) {
+        Song.find(
+            {_id: {$nin: playlist.songslist}},
+            function(err, songs) {
+                console.log(songs);
+                res.render('playlists/show', {
+                    title: 'Playlist Detail', playlist, songs
+                });
+            }
+        );
+    });
 }
 
 function newPlaylist (req, res) {

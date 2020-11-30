@@ -11,6 +11,7 @@
       <% playlists.forEach(function(p) { %>
         <tr>
           <td><%= p.playlist %></td>
+          <td><%= p.song %></td>
           <td><a href="/playlists/<%= p._id %>">Details</a></td>
         </tr>
         <% }); %>

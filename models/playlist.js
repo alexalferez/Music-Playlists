@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { schema } = require('./song');
 const Schema = mongoose.Schema;
 
 const playlistSchema = new Schema({

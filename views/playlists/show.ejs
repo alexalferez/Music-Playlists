@@ -3,7 +3,23 @@
 <section id="show-page">
     <div>Playlist:</div>
     <div><%= playlist.playlists %></div>
+    <div>Song List:</div>
+    <ul>
+        <%- playlist.songslist.map(s =>
+        `<li>${s.name}</li>`
+        ) %>
+    </ul>
 </section>
+<br><br>
+<form id="add-per-to-songlist" action="/playlists/<%=playlist._id%>/songs" method="POST">
+<select name="songId">
+    <%- songs.map(s =>
+    `<option value="${s._id}">${s.name}</option>`
+    ) %>
+</select>
+<button type="submit">Add to Song</button>
+</form>
+
 
 
 <%- include('../partials/footer') %>
