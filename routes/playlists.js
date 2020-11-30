@@ -5,6 +5,10 @@ const passport = require('passport');
 
 /* GET users listing. */
 router.get('/', playlistsCtrl.index);
+router.get('/new', playlistsCtrl.new);
+router.post('/', playlistsCtrl.create);
+router.get('/:id', playlistsCtrl.show);
+
 
 function isLogggedIn(req,res, next){
   if(req.isAuthenticated()){

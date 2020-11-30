@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
+const { schema } = require('./song');
 const Schema = mongoose.Schema;
 
 const playlistSchema = new Schema({
-    name: String,
-    email: String,
-    avatar: String,
-    googleId: String
+    playlist: String,
+    songslist: [{type: Schema.Types.ObjectId, ref: 'Song'}]
 }, {
     timestamps: true
 });

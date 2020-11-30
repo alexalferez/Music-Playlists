@@ -1,7 +1,10 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  flex-wrap: center;
+  
+}
+.nav{
+  flex-wrap: wrap;
 }
 
 a {
@@ -10,6 +13,7 @@ a {
 
 .brand-logo {
   margin-left: 15px;
+  
 }
 
 .card .card-content .card-title {

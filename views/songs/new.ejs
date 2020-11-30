@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<body>
+    <p>Please first ensure that the Song is not in the dropdown
+        <select>
+            <% songs.forEach(function(s){ %>
+                <options><%= s.name %></options>
+           <% }) %>
+        </select>
+    </p>
+   <h2>Enter New Song</h2>
+<form id="new-form" action="/playlists" method="POST">
+<label>Song Name:
+<input type="text" name="song">
+</label><br>
+<label>Album:
+<input type="text" name="album">
+</label><br>
+<label>Parental Advisory Label:
+<select name="Parental Advisory">
+    <option value="Explicit">Explicit</option>
+    <option value="Clean">Clean</option>
+</select>
+</label><br>
+<input type="submit" value="Add Song">
+</form>
+</body>
+
+<%- include('../partials/footer') %>
