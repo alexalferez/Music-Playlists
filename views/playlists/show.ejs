@@ -1,12 +1,10 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-    <div>Playlist:</div>
-    <div><%= playlist.playlists %></div>
     <div>Song List:</div>
     <ul>
         <%- playlist.songslist.map(s =>
-        `<li>${s.name}</li>`
+        `<li>${s.name} ${s.album}</li>`
         ) %>
     </ul>
 </section>

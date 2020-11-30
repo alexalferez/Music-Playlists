@@ -18,9 +18,15 @@ function addToSongList(req, res) {
 }
 
 function create(req, res) {
-    Song.create(req.body, function(err, song) {
-        res.redirect('/songs/new');
+    let song = new Song(req.body)
+    song.save(function(err, s) {
+        console.log(err);
+        if(err) res.redirect('/songs/new');
+        else res.redirect('/');
     });
+    // Song.create(req.body, function(err, song) {
+    //     res.redirect('/songs/new');
+    // });
 }
 
 function newSong(req, res) {

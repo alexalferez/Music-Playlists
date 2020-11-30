@@ -2,22 +2,22 @@
 
 <body>
     <p>Please first ensure that the Song is not in the dropdown
-        <select>
-            <% songs.forEach(function(s) { %>
-                <options><%= s.name %></options>
-           <% }) %>
-        </select>
+        <select name="songId">
+            <%- songs.map(s =>
+            `<option value="${s._id}">${s.name}</option>`
+            ) %>
+        </select> 
     </p>
    <h2>Enter New Song</h2>
-<form id="new-form" action="/playlists" method="POST">
+<form id="new-form" action="/songs" method="POST">
 <label>Song Name:
-<input type="text" name="song">
+<input type="text" name="name">
 </label><br>
 <label>Album:
 <input type="text" name="album">
 </label><br>
 <label>Parental Advisory Label:
-<select name="Parental Advisory">
+<select name="ParentalAdvisory">
     <option value="Explicit">Explicit</option>
     <option value="Clean">Clean</option>
 </select>

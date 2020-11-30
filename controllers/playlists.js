@@ -8,12 +8,15 @@ module.exports = {
     show
 }
 
+
 function show(req, res) {
+    console.log("hi");
     Playlist.findById(req.params.id)
     .populate('songslist').exec(function(err, playlist) {
         Song.find(
-            {_id: {$nin: playlist.songslist}},
-            function(err, songs) {
+            // {_id: {$nin: playlist.songslist}},
+            {},
+            function(err, songs, playlists) {
                 console.log(songs);
                 res.render('playlists/show', {
                     title: 'Playlist Detail', playlist, songs
@@ -28,6 +31,10 @@ function newPlaylist (req, res) {
 }
 
 function index(req, res, next){
+    // Playlist.deleteMany({}, function(err, playlists){
+    //     res.render('playlists/index', { title: 'All Playlists', playlists:[]});
+    // });
+
   Playlist.find({}, function(err, playlists){
       res.render('playlists/index', { title: 'All Playlists', playlists});
   });
