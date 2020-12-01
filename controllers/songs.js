@@ -24,9 +24,6 @@ function create(req, res) {
         if(err) res.redirect('/songs/new');
         else res.redirect('/');
     });
-    // Song.create(req.body, function(err, song) {
-    //     res.redirect('/songs/new');
-    // });
 }
 
 function newSong(req, res) {

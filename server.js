@@ -12,6 +12,7 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var playlistsRouter = require('./routes/playlists');
 var songsRouter = require('./routes/songs');
+var reviewsRouter = require('./routes/reviews');
 
 var app = express();
 
@@ -39,9 +40,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(req, res, next){
+  // attached to locals is what the property/variable that will be availible throughout our application 
+  // in ejs
+  res.locals.user = req.user; // if we are not logged in req.user will be undefined
+  next();
+})
+
 app.use('/', indexRouter);
 app.use('/playlists', playlistsRouter);
 app.use('/', songsRouter);
+app.use('/', reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

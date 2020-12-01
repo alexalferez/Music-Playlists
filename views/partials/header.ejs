@@ -11,6 +11,11 @@
 <body>
     <div class="navbar-fixed">  
     <nav>
+        <% if (user) { %>
+            <a href="/logout"><i class="material-icons left">trending_flat</i>Log Out</a>
+          <% } else { %>
+            <a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a>
+          <% } %>
         <a href="/playlists/new" <%- title=== 'Add Playlist' ? 'class="active"' : '' %>>Add Playlist</a>
         <a href="/playlists"<%- title === 'All Playlist' ? 'class="active"' : '' %>> All Playlist</a>
         <a href="/songs/new"<%- title === 'Add Song' ? 'class="active"' : '' %>> Add Song</a>

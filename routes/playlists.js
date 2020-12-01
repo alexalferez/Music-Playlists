@@ -10,6 +10,7 @@ router.post('/', playlistsCtrl.create);
 router.get('/:id', playlistsCtrl.show);
 
 
+
 function isLogggedIn(req,res, next){
   if(req.isAuthenticated()){
       return next()

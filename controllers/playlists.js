@@ -10,7 +10,6 @@ module.exports = {
 
 
 function show(req, res) {
-    console.log("hi");
     Playlist.findById(req.params.id)
     .populate('songslist').exec(function(err, playlist) {
         Song.find(
