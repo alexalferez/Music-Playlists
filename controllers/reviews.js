@@ -10,7 +10,7 @@ function update(req, res) {
     Playlist.findOne({'reviews._id': req.params.id}, function (err, playlist) {
         const reviewSubdoc = playlist.reviews.id(req.params.id);
         if(!reviewSubdoc.user.equals(req.user._id)) return res.redirect(`/playlists/${playlist._id}`);
-        reviewSubdoc.text =req.body.text;
+        reviewSubdoc.content =req.body.content;
         playlist.save(function(err) {
             res.redirect(`/playlists/${playlist._id}`);
         });

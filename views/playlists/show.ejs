@@ -51,7 +51,7 @@
           <td><%= r.content %></td>
           <td><%= r.rating %></td>
           <form action="/playlists/<%= r._id %>/reviews?_method=PUT" method="POST">
-            <input name="text" value="<%= r.text %>">
+            <input name="content" value="<%= r.text %>">
             <button type="submit">UPDATE REVIEW</button>
           </form>
             <br>          
