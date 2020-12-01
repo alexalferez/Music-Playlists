@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const Playlist = require('../models/playlist');
+const User = require('../models/user');
 //Require your User Model here!
 
 // configuring Passport!
@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
     // a user has logged in via OAuth!
-    Playlist.findOne({'googleId': profile.id }, function(err, user) {
+    User.findOne({'googleId': profile.id }, function(err, user) {
         if (err) return cb(err);
         if (user) {
             if (!user.avatar){
@@ -23,12 +23,13 @@ passport.use(new GoogleStrategy({
                 return cb(null, user);
             }
         } else {
-            const newUser = new Playlist({
+            const newUser = new User({
                 name: profile.displayName,
                 email: profile.emails[0].value,
                 googleId: profile.id
             });
             newUser.save(function(err) {
+                console.log('WE ARE HERE');
                 if (err) return cb(err);
                 return cb(null, newUser);
             });
@@ -45,7 +46,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
 
   // Find your User, using your model, and then call done(err, whateverYourUserIsCalled)
-    Playlist.findById(id, function(err, user){
+    User.findById(id, function(err, user){
         done(err, user);
     });
 });

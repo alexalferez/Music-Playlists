@@ -9,7 +9,7 @@ module.exports = {
 function update(req, res) {
     Playlist.findOne({'reviews._id': req.params.id}, function (err, playlist) {
         const reviewSubdoc = playlist.reviews.id(req.params.id);
-        if(!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/playlists/${playlist._id}`);
+        if(!reviewSubdoc.user.equals(req.user._id)) return res.redirect(`/playlists/${playlist._id}`);
         reviewSubdoc.text =req.body.text;
         playlist.save(function(err) {
             res.redirect(`/playlists/${playlist._id}`);
@@ -20,7 +20,7 @@ function update(req, res) {
 function deleteReview(req, res) {
     Playlist.findOne({'reviews._id': req.params.id}, function(err, playlist) {
         const reviewSubdoc = playlist.reviews.id(req.params.id);
-        if(!reviewSubdoc.userID.equals(req.user._id)) return res.redirect(`/playlists/${playlist._id}`);
+        if(!reviewSubdoc.user.equals(req.user._id)) return res.redirect(`/playlists/${playlist._id}`);
         reviewSubdoc.remove();
         playlist.save(function(err) {
             res.redirect(`/playlists/${playlist._id}`);
@@ -29,8 +29,8 @@ function deleteReview(req, res) {
 }
 
 function create(req, res) {
-    const playlist =  new Playlist(re.body)
-    playlist.findById(req.params.id, function(err, playlist) {
+    Playlist.findById(req.params.id, function(err, playlist) {
+        req.body.user = req.user
         playlist.reviews.push(req.body);
         playlist.save(function(err) {
             res.redirect(`/playlists/${playlist._id}`);
