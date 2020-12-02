@@ -51,12 +51,14 @@
           <td><%= r.content %></td>
           <td><%= r.rating %></td>
           <form action="/playlists/<%= r._id %>/reviews?_method=PUT" method="POST">
-            <input name="content" value="<%= r.text %>">
+            <input name="content" value="<%= r.content %>">
             <button type="submit">UPDATE REVIEW</button>
           </form>
-            <br>          
+            <br> 
+            <% if (r.user.equals(user._id)) { %>         
           <form action="/playlists/<%= r._id %>/reviews?_method=DELETE" method="POST">
             <button type="submit">DELETE</button>
+            <% } %>
         </tr>
       <% }); %>
       <tr>
