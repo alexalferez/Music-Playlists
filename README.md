@@ -25,3 +25,7 @@ From all playlist page you click on Details for the playlist.
 which will take you to the Playlist page where you can add Songs, Reviews, and update and delete reviews.
 
 ![](https://i.imgur.com/grwKr3c.png)
+
+click here to go to Playlist
+
+[](https://music-playlist-aa.herokuapp.com/)
